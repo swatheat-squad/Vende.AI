@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vende.AI — Vendedor 24/7 para Moda</title>
+    <meta
+      name="description"
+      content="Ative um vendedor 24/7 com IA para sua loja de moda. Implantação concierge em 7 dias com garantia de conversas qualificadas e novas vendas."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-0: #090d12;
+        --bg-1: #0f141b;
+        --surface-0: #151b23;
+        --surface-1: #1b232e;
+        --surface-2: #202b37;
+        --border-soft: #1f2732;
+        --border-strong: #263241;
+        --text-primary: #f6f8fb;
+        --text-secondary: #a3b0c5;
+        --text-muted: #748096;
+        --accent: #22d96b;
+        --accent-strong: #1fb261;
+        --accent-fade: rgba(34, 217, 107, 0.18);
+        --radius-sm: 10px;
+        --radius-md: 14px;
+        --radius-lg: 20px;
+        --space-1: 8px;
+        --space-2: 12px;
+        --space-3: 16px;
+        --space-4: 24px;
+        --space-5: 36px;
+        --space-6: 48px;
+        --max-width: 1200px;
+        --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.35);
+        --shadow-lg: 0 28px 60px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+        color: var(--text-primary);
+        min-height: 100vh;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(900px 600px at 85% -10%, rgba(34, 217, 107, 0.12), transparent 60%),
+          radial-gradient(600px 400px at 12% 110%, rgba(34, 217, 107, 0.08), transparent 60%);
+        opacity: 0.85;
+        z-index: -1;
+      }
+
+      main {
+        width: min(100%, var(--max-width));
+        margin: 0 auto;
+        padding: 120px 24px 100px;
+        display: grid;
+        gap: 120px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 12;
+        background: rgba(12, 16, 22, 0.88);
+        border-bottom: 1px solid var(--border-soft);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      @supports not ((backdrop-filter: blur(0))) {
+        header {
+          background: #0f141b;
+        }
+      }
+
+      .nav-content {
+        width: min(100%, var(--max-width));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        gap: 20px;
+      }
+
+      .nav-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .nav-brand strong {
+        font-size: 1.1rem;
+        letter-spacing: 0.06em;
+      }
+
+      .nav-brand span {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .cta-button,
+      .ghost-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 12px;
+        padding: 14px 22px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+          background-color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+        min-width: 180px;
+        text-decoration: none;
+      }
+
+      .cta-button {
+        background: linear-gradient(180deg, #2fc96b 0%, #1a8f4a 100%);
+        border-color: #1f9d53;
+        color: #f6f8fb;
+        box-shadow: 0 12px 30px rgba(34, 217, 107, 0.28);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 36px rgba(34, 217, 107, 0.36);
+        border-color: var(--accent);
+      }
+
+      .cta-button:focus-visible,
+      .ghost-button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .cta-button:active {
+        transform: translateY(1px) scale(0.99);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      }
+
+      .ghost-button {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: var(--border-soft);
+        color: var(--text-secondary);
+      }
+
+      .ghost-button:hover {
+        color: var(--text-primary);
+        border-color: var(--accent);
+        background: rgba(34, 217, 107, 0.08);
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0 0 var(--space-3);
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 4vw, 3.4rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw, 2.4rem);
+      }
+
+      h3 {
+        font-size: clamp(1.4rem, 2.4vw, 1.6rem);
+      }
+
+      p {
+        margin: 0 0 var(--space-3);
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+      }
+
+      section {
+        display: grid;
+        gap: 32px;
+      }
+
+      .section-heading {
+        max-width: 720px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-soft);
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .section-label::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 8px rgba(34, 217, 107, 0.5);
+      }
+
+      .hero {
+        display: grid;
+        gap: 32px;
+        align-items: stretch;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: var(--space-5);
+        background: var(--surface-0);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(500px 300px at 0% 0%, rgba(34, 217, 107, 0.12), transparent 70%);
+        opacity: 0.8;
+      }
+
+      .hero-content > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .hero-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero-highlight {
+        font-size: 1.05rem;
+        color: var(--text-primary);
+        border-left: 3px solid var(--accent);
+        padding-left: 16px;
+        background: var(--surface-1);
+        border-radius: var(--radius-sm);
+        padding-top: 12px;
+        padding-bottom: 12px;
+        margin: 0;
+      }
+
+      .hero-preview {
+        background: var(--surface-0);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: var(--space-4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-preview::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(650px 380px at 100% 0%, rgba(34, 217, 107, 0.16), transparent 60%);
+        opacity: 0.7;
+      }
+
+      .preview-app {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 24px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .preview-sidebar {
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        padding: 20px 18px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .preview-logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(34, 217, 107, 0.18), rgba(34, 217, 107, 0.08));
+        border: 1px solid var(--accent-fade);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+      }
+
+      .preview-section {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .preview-nav {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .preview-nav li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid transparent;
+        font-size: 0.9rem;
+      }
+
+      .preview-nav li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .preview-nav li.active {
+        background: rgba(34, 217, 107, 0.14);
+        border-color: var(--accent-fade);
+        color: var(--text-primary);
+      }
+
+      .preview-nav li.active::before {
+        background: var(--accent);
+        box-shadow: 0 0 10px rgba(34, 217, 107, 0.5);
+      }
+
+      .preview-main {
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        padding: 28px;
+        display: grid;
+        gap: 24px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+
+      .preview-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .preview-title {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .preview-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #0b160f;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      .preview-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-md);
+        padding: 32px;
+        display: grid;
+        gap: 12px;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .preview-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: rgba(34, 217, 107, 0.12);
+        border: 1px solid var(--accent-fade);
+        display: grid;
+        place-items: center;
+        font-size: 1.4rem;
+      }
+
+      .preview-card strong {
+        font-size: 1.05rem;
+      }
+
+      .preview-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+      }
+
+      .preview-actions {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+      }
+
+      .preview-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 12px;
+        background: rgba(34, 217, 107, 0.2);
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid var(--accent-fade);
+      }
+
+      .preview-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 16px;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .preview-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .preview-meta .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(34, 217, 107, 0.5);
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .card {
+        background: var(--surface-0);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        padding: var(--space-4);
+        display: grid;
+        gap: 12px;
+      }
+
+      .card h3 {
+        margin: 0;
+      }
+
+      .card ul {
+        margin: 0;
+        padding-left: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .card li {
+        font-size: 0.98rem;
+        color: var(--text-secondary);
+      }
+
+      .card li::marker {
+        color: var(--accent);
+      }
+
+      .value-stack {
+        display: grid;
+        gap: 20px;
+      }
+
+      .value-item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+
+      .value-item strong {
+        font-size: 1.05rem;
+        color: var(--text-primary);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .price-card {
+        padding: 28px;
+        border-radius: var(--radius-lg);
+        background: var(--surface-0);
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+        display: grid;
+        gap: 18px;
+      }
+
+      .price-card.highlight {
+        border-color: rgba(34, 217, 107, 0.4);
+        box-shadow: 0 20px 40px rgba(34, 217, 107, 0.15), var(--shadow-md);
+        position: relative;
+      }
+
+      .price-card.highlight::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(34, 217, 107, 0.35);
+        pointer-events: none;
+      }
+
+      .price-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border-soft);
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        color: var(--text-secondary);
+      }
+
+      .price-amount {
+        font-size: 2.3rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .price-amount small {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .price-features {
+        margin: 4px 0 16px;
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+        color: var(--text-secondary);
+      }
+
+      .price-features li::marker {
+        color: var(--accent);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 20px;
+      }
+
+      .timeline-item {
+        display: grid;
+        gap: 8px;
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+
+      .timeline-item strong {
+        color: var(--accent);
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .metric-card {
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+        background: var(--surface-1);
+        border: 1px solid var(--border-soft);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        display: grid;
+        gap: 8px;
+      }
+
+      .metric-card span {
+        display: block;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+      }
+
+      .metric-card strong {
+        font-size: 1.4rem;
+        color: var(--text-primary);
+      }
+
+      .cta-section {
+        text-align: center;
+        display: grid;
+        gap: 24px;
+        justify-items: center;
+        padding: 56px 48px;
+        background: var(--surface-0);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-strong);
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(720px 420px at 50% -10%, rgba(34, 217, 107, 0.24), transparent 65%);
+        opacity: 0.6;
+      }
+
+      .cta-section > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .cta-section p {
+        max-width: 620px;
+        margin: 0 auto;
+        color: var(--text-primary);
+      }
+
+      footer {
+        padding: 40px 24px 60px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      @media (min-width: 1040px) {
+        .hero {
+          grid-template-columns: 1.05fr 0.95fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        main {
+          gap: 96px;
+        }
+
+        .preview-app {
+          grid-template-columns: 200px 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        main {
+          padding-top: 100px;
+        }
+
+        header {
+          background: rgba(12, 16, 22, 0.95);
+          backdrop-filter: blur(0px);
+          -webkit-backdrop-filter: blur(0px);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .nav-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero {
+          gap: 24px;
+        }
+
+        .hero-preview {
+          order: -1;
+        }
+
+        .cta-button,
+        .ghost-button {
+          width: 100%;
+        }
+
+        .preview-app {
+          grid-template-columns: 1fr;
+        }
+
+        .preview-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .preview-chip {
+          align-self: flex-start;
+        }
+      }
+
+      @media (max-width: 600px) {
+        main {
+          padding: 100px 20px 80px;
+        }
+
+        .hero-content {
+          padding: 28px;
+        }
+
+        .hero-meta span {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-content">
+        <div class="nav-brand">
+          <strong>Vende.AI</strong>
+          <span>Moda que vende enquanto você vive</span>
+        </div>
+        <a class="ghost-button" href="#elegibilidade">Ver se sou elegível</a>
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="topo">
+        <div class="hero-content">
+          <div class="section-label">Founder’s Offer — 15 vagas/mês</div>
+          <h1>Ative um vendedor 24/7 que responde, recomenda e fecha no chat — em 7 dias, garantido.</h1>
+          <p>
+            Seu assistente conversa no Instagram e WhatsApp, sincroniza estoque em tempo real e recomenda o tamanho certo para zerar devoluções.
+            Implantação concierge com metas semanais, pele no jogo e dupla garantia de resultado.
+          </p>
+          <p class="hero-highlight">
+            “Em 30 dias, você terá no mínimo 30 conversas qualificadas e 3–10 novas vendas via DM/WhatsApp — ou você não paga e seguimos trabalhando até bater.”
+          </p>
+          <div class="hero-meta">
+            <span>Go-live em 7 dias</span>
+            <span>Link de pagamento direto no chat</span>
+            <span>Estoque sincronizado: site, loja e chat</span>
+            <span>Recomendação de tamanho por IA</span>
+          </div>
+          <div class="hero-actions">
+            <a class="cta-button" href="#aplicar">Aplicar para prévia</a>
+            <a class="ghost-button" href="#oferta">Explorar a oferta completa</a>
+          </div>
+        </div>
+        <div class="hero-preview" aria-hidden="true">
+          <div class="preview-app">
+            <aside class="preview-sidebar">
+              <div class="preview-logo">VA</div>
+              <div class="preview-section">Principal</div>
+              <ul class="preview-nav">
+                <li class="active">Dashboard</li>
+                <li>Inbox</li>
+                <li>Agentes de IA</li>
+              </ul>
+              <div class="preview-section">Gestão</div>
+              <ul class="preview-nav">
+                <li>CRM</li>
+                <li>Produtos</li>
+                <li>Minhas Lojas</li>
+              </ul>
+              <div class="preview-section">Análise</div>
+              <ul class="preview-nav">
+                <li>Analytics</li>
+                <li>Relatórios</li>
+              </ul>
+              <div class="preview-section">Comunicações</div>
+              <ul class="preview-nav">
+                <li>Automações</li>
+                <li>Integrações</li>
+                <li>Configurações</li>
+                <li>Billing</li>
+              </ul>
+            </aside>
+            <div class="preview-main">
+              <div class="preview-top">
+                <span class="preview-title">Catálogo de Produtos</span>
+                <span class="preview-chip">+ Novo Produto</span>
+              </div>
+              <div class="preview-card">
+                <div class="preview-icon">📦</div>
+                <strong>Nenhum produto cadastrado</strong>
+                <p>Adicione produtos ao catálogo para que os agentes apresentem as peças certas às clientes.</p>
+                <div class="preview-actions">
+                  <span class="preview-button">+ Adicionar Primeiro Produto</span>
+                </div>
+              </div>
+              <div class="preview-meta">
+                <span><span class="dot"></span>Estoque sincronizado</span>
+                <span><span class="dot"></span>Recomendações por IA</span>
+                <span><span class="dot"></span>Pagamentos no chat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="porque">
+        <div class="section-label">Por que funciona</div>
+        <div class="section-heading">
+          <h2>Vendedor 24/7 + Estoque Vivo + Tamanho Certo</h2>
+          <p>
+            Três módulos orquestrados para resolver de vez os gargalos que travam o varejo de moda: atendimento humano caótico, estoque fora de sincronia e devoluções por tamanho.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Assistente Conversacional 24/7</h3>
+            <p>
+              Responde DMs e WhatsApp em 30 segundos com copy que soa como você. Qualifica, trata objeções e finaliza com link de pagamento sem depender da sua presença.
+            </p>
+            <ul>
+              <li>Scripts plug-and-play para ofertas, objeções e follow-up</li>
+              <li>Prova social e gatilhos alinhados à sua marca</li>
+              <li>Handoff humano quando realmente necessário</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Omnichannel de Estoque</h3>
+            <p>
+              Sincroniza disponibilidade entre site, loja física e chat para nunca mais vender o que não tem. Integrado com ERP, planilha ou planogramas simples.
+            </p>
+            <ul>
+              <li>Visão única de estoque em tempo real</li>
+              <li>Alertas de ruptura e reposição automática</li>
+              <li>Auditoria ABC de estoque para priorizar o que gira</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>AI Size Finder</h3>
+            <p>
+              Recomenda o tamanho perfeito analisando biotipos, peças anteriores e feedback das clientes. Menos devoluções, mais confiança na primeira compra.
+            </p>
+            <ul>
+              <li>Questionário rápido que cabe no chat</li>
+              <li>Correlação com peças similares para reduzir troca</li>
+              <li>Relatórios sobre motivos de devolução</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="oferta">
+        <div class="section-label">Value Stack 10×</div>
+        <div class="section-heading">
+          <h2>Implantação concierge com suporte direto dos founders</h2>
+          <p>
+            Você recebe o sistema completo pronto para operar, plano de ativação em 72 horas e acompanhamento quinzenal para garantir que as metas saiam do papel.
+          </p>
+        </div>
+        <div class="value-stack">
+          <div class="value-item">
+            <strong>Produto principal</strong>
+            <p>Implantação Vende.AI (Instagram + WhatsApp + pagamentos) com go-live em 7 dias e metas semanais claras.</p>
+          </div>
+          <div class="value-item">
+            <strong>Bônus 72h de Ganhos Rápidos</strong>
+            <p>Stories “DM bait”, CTAs prontos e respostas rápidas para disparar conversas e gerar as primeiras vendas instantâneas.</p>
+          </div>
+          <div class="value-item">
+            <strong>Biblioteca de Respostas & Scripts</strong>
+            <p>Frete, provador, trocas, up/cross-sell: tudo pronto para o seu tom de voz, basta plugar.</p>
+          </div>
+          <div class="value-item">
+            <strong>Painel de Métricas Simplificado</strong>
+            <p>Tags automáticas, taxa de qualificação, pagamento no chat, peças mais pedidas e alertas de ruptura.</p>
+          </div>
+          <div class="value-item">
+            <strong>Revisões quinzenais (60 dias)</strong>
+            <p>Founders na call ajustando fluxos e copy para elevar conversão e ticket médio.</p>
+          </div>
+          <div class="value-item">
+            <strong>Auditoria ABC de Estoque</strong>
+            <p>Descubra o que acelerar, liquidar ou reabastecer para manter capital girando no que mais vende.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="garantia">
+        <div class="section-label">Garantia Brutal</div>
+        <div class="section-heading">
+          <h2>Dupla proteção para investir sem medo</h2>
+          <p>
+            Se não implantarmos em 7 dias, você não paga a mensalidade até concluir. Se a meta de 30 conversas + 3–10 vendas não bater em 30 dias, devolvemos 100% ou seguimos sem custo até entregar.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Implantação garantida</h3>
+            <p>Atrasou? Mensalidade zero até o go-live. Sem letra miúda, contrato simples.</p>
+          </article>
+          <article class="card">
+            <h3>Meta garantida</h3>
+            <p>30 conversas qualificadas + 3–10 vendas em 30 dias ou você escolhe entre dinheiro de volta ou continuidade sem custo.</p>
+          </article>
+          <article class="card">
+            <h3>Pele no jogo real</h3>
+            <p>Elegibilidade clara para proteger seu investimento: mínimo 5k seguidores ou R$ 2k/mês em tráfego, catálogo pronto, aprovador em 48h e acesso ao estoque.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="precificacao">
+        <div class="section-label">Planos Founder</div>
+        <div class="section-heading">
+          <h2>Payback em 30–45 dias para lojas elegíveis</h2>
+          <p>Âncora simples: ticket médio R$150 × 30 vendas = R$4.500/mês de receita incremental potencial — sem contar upsell nem recompra.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-title">
+              <h3>Fundação Conversacional</h3>
+              <span class="badge">Essencial</span>
+            </div>
+            <div class="price-amount">R$ 1.490 <small>setup</small></div>
+            <div class="price-amount" style="font-size: 1.6rem">R$ 790 <small>/ mês</small></div>
+            <ul class="price-features">
+              <li>Assistente 24/7 (IG + WhatsApp)</li>
+              <li>Link de pagamento integrado</li>
+              <li>Biblioteca de scripts e Plano 72h</li>
+            </ul>
+            <a class="cta-button" href="#aplicar">Aplicar para prévia</a>
+          </article>
+          <article class="price-card highlight">
+            <div class="price-title">
+              <h3>Operação Integrada</h3>
+              <span class="badge">Mais vendido</span>
+            </div>
+            <div class="price-amount">R$ 2.490 <small>setup</small></div>
+            <div class="price-amount" style="font-size: 1.6rem">R$ 990 <small>/ mês</small></div>
+            <ul class="price-features">
+              <li>Tudo do plano anterior</li>
+              <li>Omnichannel de estoque sincronizado</li>
+              <li>Painel de métricas simplificado</li>
+            </ul>
+            <a class="cta-button" href="#aplicar">Aplicar para prévia</a>
+          </article>
+          <article class="price-card">
+            <div class="price-title">
+              <h3>Performance Máxima</h3>
+              <span class="badge">Completo</span>
+            </div>
+            <div class="price-amount">R$ 3.990 <small>setup</small></div>
+            <div class="price-amount" style="font-size: 1.6rem">R$ 1.990 <small>/ mês</small></div>
+            <ul class="price-features">
+              <li>AI Size Finder avançado</li>
+              <li>Consultoria de estoque + auditoria ABC</li>
+              <li>Revisões quinzenais com founders (60 dias)</li>
+            </ul>
+            <a class="cta-button" href="#aplicar">Aplicar para prévia</a>
+          </article>
+        </div>
+        <p style="margin-top: 24px; color: var(--text-secondary); font-size: 0.95rem;">
+          Capacidade real: 15 contas fundadoras/mês. Após o lote Founder, bônus 4 e 5 saem do pacote e os valores são reajustados.
+        </p>
+      </section>
+
+      <section id="onboarding">
+        <div class="section-label">Onboarding que comprime tempo</div>
+        <div class="section-heading">
+          <h2>Plano de execução em 7 dias para sair da estagnação</h2>
+          <p>Você não encosta em painel técnico: nossa equipe configura tudo, entrega scripts e ativa campanhas para gerar resultados ainda na primeira semana.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>Dia 0</strong>
+            <p>Diagnóstico, definição da meta de 30 dias, coleta de catálogo, políticas, meios de pagamento e acesso ao estoque.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Dias 1–2</strong>
+            <p>Fluxos principais prontos: captura → qualificação → oferta → pagamento, com copy adaptada ao seu tom.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Dia 3</strong>
+            <p>Publicamos o Plano 72h (DM bait + respostas rápidas) para disparar conversas e primeiras vendas.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>Dia 7</strong>
+            <p>Go-live oficial + revisão com founders. Checkpoints nos dias 14 e 28 para ajustes e auditoria de estoque.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="kpi">
+        <div class="section-label">Placar semanal</div>
+        <div class="section-heading">
+          <h2>Métricas que importam para liberar sua agenda</h2>
+          <p>Monitore conversas iniciadas, qualificação, conversão em pagamento, ticket médio, devoluções, ruptura de estoque, MRR e payback sem se perder em relatórios infinitos.</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span>Conversas iniciadas/dia</span>
+            <strong>+300%</strong>
+          </div>
+          <div class="metric-card">
+            <span>% de qualificação</span>
+            <strong>&gt; 65%</strong>
+          </div>
+          <div class="metric-card">
+            <span>% pagamento no chat</span>
+            <strong>&gt; 40%</strong>
+          </div>
+          <div class="metric-card">
+            <span>Taxa de devolução</span>
+            <strong>-35%</strong>
+          </div>
+          <div class="metric-card">
+            <span>Ticket médio</span>
+            <strong>+22%</strong>
+          </div>
+          <div class="metric-card">
+            <span>Payback</span>
+            <strong>&lt; 45 dias</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="elegibilidade">
+        <div class="section-label">Elegibilidade</div>
+        <div class="section-heading">
+          <h2>Projetado para lojas que já têm demanda</h2>
+          <p>Garantimos resultado porque escolhemos a dedo quem entra. Se você preenche os requisitos abaixo, a Founder’s Offer é para você.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Base ativa</h3>
+            <p>Mínimo 5.000 seguidores ou R$ 2k/mês em tráfego pago constante.</p>
+          </article>
+          <article class="card">
+            <h3>Infra pronta</h3>
+            <p>Catálogo e meios de pagamento habilitados; acesso ao estoque via ERP ou planilha.</p>
+          </article>
+          <article class="card">
+            <h3>Agilidade</h3>
+            <p>Alguém do time aprova pendências em até 48h para manter o ritmo das automações.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="aplicar">
+        <div class="cta-section">
+          <h2>Chega de ser funcionária do próprio negócio</h2>
+          <p>
+            Preencha o formulário de elegibilidade para garantir uma das 15 vagas Founder deste mês. Implantamos seu Vende.AI em 7 dias e colocamos o sistema para vender enquanto você dorme.
+          </p>
+          <div class="hero-actions" style="justify-content: center;">
+            <a class="cta-button" href="https://wa.me/5500000000000" target="_blank" rel="noopener">Aplicar para prévia</a>
+            <a class="ghost-button" href="mailto:founders@vende.ai">Falar direto com os founders</a>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Preferimos poucas contas com resultado absurdo a crescer sem controle. Quando as 15 vagas fecham, a lista espera abre para o próximo lote.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      © 2024 Vende.AI — Founder’s Offer exclusiva para varejo de moda. Todos os direitos reservados.
+    </footer>
+  </body>
+</html>
